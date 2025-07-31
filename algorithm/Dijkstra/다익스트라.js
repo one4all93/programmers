@@ -9,5 +9,31 @@
  * (3번 과정으로 인해 다익스트라 알고리즘은 일종의 그리디 알고리즘으로 분류되기도 한다.)
  */
 
+const graph = Array.from({ length: n + 1 }, () => []);
+const d = Array.from({ length: n + 1 }, () => Infinity);
 
+for (const v of arr) {
+  const [from, to, dist] = v;
+  graph[from].push([to, dist]);
+}
 
+const queue = [];
+queue.push([start, 0]);
+d[start] = 0;
+
+while (queue.length !== 0) {
+  const [curNode, dist] = queue.pop();
+
+  if (d[curNode] < dist) continue;
+
+  for (const v of graph[curNode]) {
+    const node = v[0];
+    const cost = dist + v[1];
+
+    if (cost < d[node]) {
+      queue.push([node, cost]);
+      queue.sort((a, b) => a[1] - b[1]);
+      d[node] = cost;
+    }
+  }
+}
