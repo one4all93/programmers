@@ -21,7 +21,8 @@ function solution(s) {
 
     let ss = s.split('').reverse().join('');
     let sss = s.split('').sort().join('');
-    console.log(s,ss,sss);
+    answer = s.split('').reverse().sort().join('');
+    console.log(ss , answer);
     
     return answer;
 }
