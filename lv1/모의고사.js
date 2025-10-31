@@ -32,6 +32,22 @@ let answers = [1,2,3,4,5];
 answers = [1,3,2,4,2];
 answers = [5,5,5,5,5];
 
+
+answers = [2,1,2,3,2,4,2,5,1,3]; //[2]
+answers = [3,3,1,1,2,2,4,4,5,5]; //[3]
+answers = [5,4,3,2,1]; //[1,2,3]
+// answers = [1,1,1,1,1,1,1,1,1,1]; //[1]
+// answers = [2,2,2,2,2,2,2,2]; //[2]
+// answers = [3,1,2,4,5,1,2,3,4,5,2,3,4,5,1]; //[1]
+// answers = [1,2,1,2,1,2,1,2,1,2,1,2]; //[2]
+// answers = [5,5,4,4,3,3,2,2,1,1]; //[3]
+// answers = [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]; //[1]
+// answers = [3,1,2,3,1,2,3,1,2,3,1,2]; //[2,3]
+// answers = [4,4,4,4,4,4,4,4]; //[1,2,3]
+
+
+// 5,6,7,9,10,11,12,13 테스트 실패
+
 solution(answers);
 
 function solution(answers) {
@@ -47,29 +63,24 @@ function solution(answers) {
 
     let score = [0,0,0];
 
-    for(let i=0; i<3; i++){
-        temp = [...answers];
-        //수포자 반복문 돌려서 정답빈배열들 수포자배열길이만큼 추가해주기
-        if(supojas[i].length > answers.length){
-            let idx = supojas[i].length - answers.length;
-            for(let j=0; j<idx; j++){
-                temp.push(answers[j]);
-            }
-        }
-
-        // 수포자배열이랑 정답배열 비교해서 스코어배열에 값 넣어주기
-        supojas[i].forEach((c,idx)=>{
-            if(c === temp[idx]) score[i] += 1;
+    answers.forEach((ans, idx) => {
+        supojas.forEach((supoja, sIdx) => {
+            console.log('supoja',supoja)
+            supoja.forEach(s=>{
+                console.log('s',s);
+            })
         })
-    }
-
-    score.forEach((s,idx)=>{
-        if(s === Math.max(...score)){
-            answer.push(idx+1);
-        }
     });
 
-    answer.sort();
+    console.log('score',score);
+
+    const maxScore = Math.max(...score);
+
+    score.filter((s,i)=>{
+        if(s == maxScore){
+            answer.push(i+1);
+        }
+    });
 
     console.log(answer);
 
