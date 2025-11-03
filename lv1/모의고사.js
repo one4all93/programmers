@@ -68,7 +68,7 @@ function solution(answers) {
             // 수포자배열의 값이랑 정답이랑 같은지 확인하고 score배열 해당 인덱스에 +1
             // console.log('ccheck :: ', supoja[idx%supoja.length], ans);
             if(supoja[idx%supoja.length] == ans){   // => ** 앤서의 인덱스가 수포자배열의 길이보다 커지면 단순비교를 못하니까,
-                score[sidx] += 1;                   //          수포자배열의 길이로 나눈 나머지값을 인덱스로 사용해야함!! **
+                score[sidx] += 1;                   //    수포자배열의 길이로 나눈 나머지값을 인덱스로 사용해야함!! **
             }
         });
     });

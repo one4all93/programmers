@@ -63,30 +63,85 @@
 let n = 8;
 let m = 4;
 let section = [2, 3, 6];
-// n = 5;
-// m = 4;
-// section = [1, 3];
-// n = 4;
-// m = 1;
-// section = [1, 2, 3, 4];
-// n = 10;
-// m = 2;
-// section = [1, 3, 5, 7, 9];
+n = 5;
+m = 4;
+section = [1, 3];
+n = 4;
+m = 1;
+section = [1, 2, 3, 4];
+n = 10;
+m = 2;
+section = [1, 3, 5, 7, 9];
+n = 8, m = 4, section = [2, 3, 6, 7];
+// n = 15, m = 5, section = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// n = 10, m = 3, section = [8, 9, 10];
+// n = 10, m = 3, section = [1,2,3,5,6,8,9,10];
+// n = 20, m = 6, section = [4, 7, 10, 13, 16, 19];
 
 solution(n, m, section);
 
-function solution(n, m, section) {
+function solution(n, m, section) { 
     var answer = 0;
 
-    let temp = [];
+    console.log('n :: ', n, ' / m :: ', m, ' / section :: ', section);
 
-    for(let i=1; i<=n; i++){
-        temp.push(i);
+    let lastPainted = 0;
+
+    for (const position of section) {
+        console.log(position)
+        if(position > lastPainted){
+            answer += 1;
+            lastPainted = position + m - 1;
+        }else{
+            console.log('이미 칠해진 구역입니다.', position);
+        }
     }
 
-    console.log(temp);
+    console.log('answer :: ', answer);
 
-    // console.log(n,'/',m,'/',section);
+    // let last = 0; // 마지막으로 칠한 구역 값
+    // let diff = 0;
+    // let go = true;
+
+    // // 계속 반복문돌면서 조건확인하고 최종에 마지막 로직 실행하고 종료
+    // while(go){
+    //     if(last == 0){
+    //         last = section[0] + m - 1;
+    //         diff = section[section.length-1] + 1 - last;
+    //         console.log('1첫 반복문 last :: ', last);
+    //         answer += 1;
+    //     }else{
+    //         // console.log('2반복문 last :: ', last);
+
+    //         // console.log('색칠해야할부분에서 값 있는지',section.indexOf(last));
+    //         console.log('**',last , ' ',section[section.indexOf(last)+1] , ' ', m)
+    //         last = section[section.indexOf(last)] + m;
+    //         diff = section[section.length-1] + 1 - last;
+    //         answer += 1;
+    //         console.log('2첫 반복문 last :: ', last);
+    //     }
+
+    //     // 칠한후 마지막 값이 칠해야할 마지막 값을 넘어갔는지 아닌지 확인**
+    //     // 넘으면 이미 다 칠해졌다고 판단해서 종료
+    //     // console.log('중간 last :: ', last, ' / section 마지막값 :: ', section[section.length-1]);
+    //     if(last >= section[section.length-1]){
+    //         console.log('이미 다 칠해짐')
+    //         go = false;
+    //         break;
+    //     }
+
+    //     // console.log('초기 last :: ', last, ' / diff :: ', diff);
+    //     if(m > diff){
+    //         console.log('12312321321321');
+    //         answer += 1;
+    //         // 가장 마지막에 이 조건을 탈꺼라서 여기서 반복이 종료되어야함
+    //         go = false;
+    //     }
+    // }
+
+    // console.log('최종 last :: ', last);
+    // console.log('answer :: ', answer);
+
 
     return answer;
 }
