@@ -36,7 +36,7 @@ answers = [5,5,5,5,5];
 answers = [2,1,2,3,2,4,2,5,1,3]; //[2]
 answers = [3,3,1,1,2,2,4,4,5,5]; //[3]
 answers = [5,4,3,2,1]; //[1,2,3]
-// answers = [1,1,1,1,1,1,1,1,1,1]; //[1]
+answers = [1,1,1,1,1,1,1,1,1,1]; //[1]
 // answers = [2,2,2,2,2,2,2,2]; //[2]
 // answers = [3,1,2,4,5,1,2,3,4,5,2,3,4,5,1]; //[1]
 // answers = [1,2,1,2,1,2,1,2,1,2,1,2]; //[2]
@@ -63,16 +63,15 @@ function solution(answers) {
 
     let score = [0,0,0];
 
-    answers.forEach((ans, idx) => {
-        supojas.forEach((supoja, sIdx) => {
-            console.log('supoja',supoja)
-            supoja.forEach(s=>{
-                console.log('s',s);
-            })
-        })
+    supojas.forEach((supoja,sidx) => {
+        answers.forEach((ans, idx) => {
+            // 수포자배열의 값이랑 정답이랑 같은지 확인하고 score배열 해당 인덱스에 +1
+            // console.log('ccheck :: ', supoja[idx%supoja.length], ans);
+            if(supoja[idx%supoja.length] == ans){   // => ** 앤서의 인덱스가 수포자배열의 길이보다 커지면 단순비교를 못하니까,
+                score[sidx] += 1;                   //          수포자배열의 길이로 나눈 나머지값을 인덱스로 사용해야함!! **
+            }
+        });
     });
-
-    console.log('score',score);
 
     const maxScore = Math.max(...score);
 
@@ -81,8 +80,6 @@ function solution(answers) {
             answer.push(i+1);
         }
     });
-
-    console.log(answer);
 
     return answer;
 }
