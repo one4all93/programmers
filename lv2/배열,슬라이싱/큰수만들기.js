@@ -26,25 +26,20 @@ solution(number, k);
 function solution(number, k) {
     var answer = '';
 
-    let arr = [k];
+    let temp = [];
 
-    console.log(number, k);
-
-    for(let i=0; i<number.length; i++){
-        console.log(i);
-        if(arr.length == 0){
-            console.log(i,number[i])
-            arr.push(number[i]);
-        }else{
-            if(arr[i] < number[i]){
-                console.log(number[i])
-                arr.push(number[i])
-            }
+    for(let num of number){
+        console.log('st',temp[temp.length - 1] , num);
+        while(k>0 && temp.length && temp[temp.length - 1] < num){
+            console.log(k,num)
+            temp.pop();
+            k--;
         }
-
+        temp.push(num);
     }
 
-    // console.log(arr);
+    answer = temp.join('');
+    console.log(answer)
 
 
     return answer;
